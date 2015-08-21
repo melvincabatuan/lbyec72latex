@@ -1,0 +1,411 @@
+\documentclass[compress,20]{beamer}
+\mode<presentation>
+
+\usetheme{Warsaw}
+%\usefonttheme{default}
+\usefonttheme{serif}
+\hypersetup{pdfpagemode=FullScreen}
+
+% define your own colours:
+\definecolor{Red}{rgb}{1,0,0}
+\definecolor{Blue}{rgb}{0,0,1}
+\definecolor{Green}{rgb}{0,1,0}
+\definecolor{magenta}{rgb}{1,0,.6}
+\definecolor{lightblue}{rgb}{0,.5,1}
+\definecolor{lightpurple}{rgb}{.6,.4,1}
+\definecolor{gold}{rgb}{.6,.5,0}
+\definecolor{orange}{rgb}{1,0.4,0}
+\definecolor{hotpink}{rgb}{1,0,0.5}
+\definecolor{newcolor2}{rgb}{.5,.3,.5}
+\definecolor{newcolor}{rgb}{0,.3,1}
+\definecolor{newcolor3}{rgb}{1,0,.35}
+\definecolor{darkgreen1}{rgb}{0, .35, 0}
+\definecolor{darkgreen2}{rgb}{0, .38, 0}
+\definecolor{darkgreen}{rgb}{0, .6, 0}
+\definecolor{darkred}{rgb}{.75,0,0}
+\xdefinecolor{olive}{cmyk}{0.64,0,0.95,0.4}
+\xdefinecolor{purpleish}{cmyk}{0.75,0.75,0,0}
+
+\usecolortheme[named=darkgreen2]{structure} % Going Green
+
+\useoutertheme{shadow}
+\setbeamertemplate{background}[grid][step=0.5cm] %Masira ang sa taas
+\usebeamertemplate*{logo}
+
+% include packages
+\usepackage{subfigure}
+\usepackage{amstext}
+\usepackage{latexsym}
+\usepackage{epsfig}
+\usepackage{graphicx}
+\usepackage[all,knot]{xy}
+\xyoption{arc}
+\usepackage{url}
+\usepackage{multimedia}
+\usepackage{hyperref}
+\usepackage{setspace}
+%\usepackage{chess}
+%\usepackage{graphpap}
+%\usepackage{pstricks}
+\usepackage{mathrsfs}
+ 
+
+%My packages from mathbook
+\usepackage{clock} %for clocks
+\usepackage{ifsym} %  
+\usepackage{epsdice} % dice
+\usepackage{clock} % 
+\usepackage{microtype}
+\usepackage{skull} %create skull
+\usepackage{cancel} %create diagonal bar (cancel)
+\usepackage{stackrel} %create arc?
+\usepackage{bbding} %create hands and cross
+\usepackage{pifont} %create circled numbers
+\usepackage{lipsum} % Just some sample text
+\usepackage{amsmath,amssymb,amsthm} %math functions like align
+\usepackage{fancybox} %For beautiful boxes
+\usepackage{xspace} % Prints a trailing space in a smart way.
+\usepackage{units}
+\usepackage{geometry} % change paper size
+\usepackage{multicol} % Small sections of multiple columns 
+\usepackage{color}
+
+%Animation
+\usepackage{etex} % Solves ! No room for a new \dimen error
+\usepackage{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{tikz}
+\usetikzlibrary{positioning,shadows,backgrounds}
+\usepackage{animate}
+\usepackage{calc}
+\usepackage{color}
+\usepackage{hyperref}
+\usepackage{ifthen}
+
+
+
+%My New Commands
+
+\newcommand{\fig}[2]{
+\begin{center}
+\begin{figure}
+\includegraphics[scale=#1]{figures/#2}
+\end{figure}
+\end{center}
+}
+
+%formula block
+\newcommand{\f}[3]{
+\begin{block}{\center  $ #1 $ }
+\begin{center}
+\begin{figure}
+\includegraphics[scale=#2]{figures/#3}
+\end{figure}
+\end{center}
+\end{block}
+}
+
+%question block
+\newcommand{\q}[5]{
+\begin{block}{#1 }
+\begin{multicols}{2} \begin{enumerate}[]
+\setlength\itemindent{0.69cm}
+\item #2
+\item #3
+\item #4
+\item #5
+\end{enumerate}\end{multicols} 
+\end{block}
+}
+
+\newcommand{\ans}[2]{\alert<#1>{\textbf<#1>{#2}}  \only<#1>{\textcolor {Red} \checkmark }} 
+
+
+\newcommand{\dquote}[1]{\ding{125} \emph{#1} \ding{126}} %decorative quote
+
+\newcommand{\formula}[1]{\vspace{-0.2cm}
+\begin{center}
+\shadowbox{#1}
+\end{center}
+\vspace{-0.2cm}
+} % For formula
+
+
+\newcommand{\point}[1]{\vspace{0.2cm} \HandCuffRight \, \smallcaps{#1}} %for pointing
+\newcommand{\s}{\vspace{0.2cm}} % adds space
+\newcommand{\ns}{\vspace{-0.5cm}}  % subtracts space
+\newcommand{\g}[1]{\[\begin{gathered} #1 \end{gathered} \]}
+
+%%% Steps %%%
+\newcommand{\first}[1]{\ding{172} \smallcaps{#1}} 
+\newcommand{\second}[1]{\ding{173}  \smallcaps{#1}} 
+\newcommand{\third}[1]{\ding{174}  \smallcaps{#1}} 
+\newcommand{\fourth}[1]{\ding{175}   \smallcaps{#1}} 
+
+
+%%% EQUATIONS %%%
+\newcommand{\one}{\quad \to \quad \text{\ding{182}}} 
+\newcommand{\two}{\quad \to \quad \text{\ding{183}}} 
+\newcommand{\three}{\quad \to \quad \text{\ding{184}}} 
+\newcommand{\four}{\quad \to \quad \text{\ding{185}}} 
+\newcommand{\five}{\quad \to \quad \text{\ding{186}}} 
+\newcommand{\six}{\quad \to \quad \text{\ding{187}}} 
+\newcommand{\seven}{\quad \to \quad \text{\ding{188}}} 
+\newcommand{\eight}{\quad \to \quad \text{\ding{189}}} 
+
+
+%My new environments
+
+%New environment for choices in two columns %Modify to single column (4/14)
+\newenvironment{choicescol}{\vspace{-0.12cm}
+\begin{itemize}[]\setlength\itemindent{0.12cm} }
+{\end{itemize} 
+\vspace{0.2cm}
+}
+
+%New environment for choices in two columns
+\newenvironment{choices}{\vspace{-0.4cm}
+\begin{multicols}{2} \begin{itemize}[]\setlength\itemindent{0.69cm} }
+{\end{itemize}\end{multicols}} 
+
+
+ 
+
+\title{$\mathcal{LBYEC}72$}
+\subtitle{Computer Fundamentals : Programming 2 \\
+Pre-requisite: LBYEC71(Soft)
+}
+\author{ Engr. Melvin Kong Cabatuan}
+\institute{{\Large De La Salle University }  \\ 
+Manila, Philippines \\
+}
+
+\date{\small January 2013 \ns }
+
+
+
+\begin{document}
+\begin{LARGE}
+ 
+
+
+
+\frame{
+
+\titlepage
+
+\begin{center}
+\begin{figure}
+\includegraphics[scale=0.2]{figures/dlsulogo}
+\end{figure}
+\end{center}
+
+}
+
+
+\logo{\includegraphics[height=2cm]{figures/dlsulogo}}
+
+
+\frame{ \frametitle{Self Introduction}
+\ns
+\fig{0.45}{me2}
+\ns
+ \noindent\underline{\textsc{Melvin K. Cabatuan, MsE, Ph.D. Cand.}} 
+ \begin{itemize}
+\normalsize
+\centering
+\item Masters of Engineering, NAIST (Japan)
+\item Thesis: Cognitive Radio (Wireless Communication)
+\item ECE Reviewer/Mentor (Since 2005)
+\item 2nd Place, Nov. 2004 ECE Board Exam
+\item Test Engineering Cadet, ON Semiconductors
+\item DOST Academic Excellence Awardee 2004  
+\item Mathematician of the Year 2003
+\item DOST Scholar (1999-2004)
+\item Panasonic Scholar, Japan (2007-2010)  
+\end{itemize} 
+\vfill
+}
+
+
+\begin{frame}
+\frametitle{On Doing Research}
+\fig{0.6}{mthesis}
+\end{frame}
+
+
+\section{Introduction}
+
+\frame{\tableofcontents}
+
+
+\section{Course Contents}
+
+\frame{\frametitle{Course Contents }
+\setbeamercovered{transparent}
+\begin{itemize}
+\Large
+\item<1->  Review of Conditional and Iterative Statements, Arrays, and Strings
+\item<2->  Topic 1: Nested Conditional and Iterative Statements
+\item<3->  Topic 2: Single-Dimensional and Multi-dimensional Arrays 
+\item<4->  Topic 3: Strings, String Arrays, and String Manipulation Functions
+\item<5-> \textbf{ Practical Exam 1}
+\item<6->  Discussion on Pointers, Functions, and Structures
+\end{itemize}
+\vfill
+}
+ 
+\frame{\frametitle{Course Contents }
+\setbeamercovered{transparent}
+\begin{itemize}
+\Large
+\item<1->  Topic 4: Pointers
+\item<2->  Topic 5: Functions and Pass-by-value
+\item<3->  Topic 6: Functions and Pass-by-reference
+\item<4->  Topic 7: Structures, Structure Array, and Complex Data Type
+\item<5->  Topic 8: Structures, Structure Pointers, and Passing of References
+\item<6->  \textbf{Practical Exam 2}
+\item<7->  Discussion on Dynamic Memory \\ Allocation and Exercise
+\end{itemize}
+\vfill
+}
+ 
+
+
+\subsection{References}
+\frame{\frametitle{References}
+\setbeamercovered{transparent}
+\begin{enumerate}
+\Large
+\item<1-> LBYEC72 Laboratory Manual
+\item<2-> Books and other online sources
+\end{enumerate}
+\vfill
+}
+
+ 
+\subsection{Evaluation}
+\frame{\frametitle{Evaluation Criteria}
+\setbeamercovered{transparent}
+\begin{table}
+  \centering
+  \begin{tabular}{lc}
+    Average of Preliminary Reports: & 20\%  \\
+    Average of Final Reports: & 20\%  \\
+    Project: &  30\%   \\
+    Practical Examination I : & 15\%   \\
+    Practical Examination II : & 15\% \s  \\ 
+       \hline \\ 
+    Total: & 100\% \\
+    PASSING GRADE:  \: 70\% & {}\\
+    \end{tabular}
+\end{table}
+\vfill
+}
+
+
+\subsection{Prelim}
+
+\frame{\frametitle{Preliminary Report}
+\begin{enumerate}
+\item Preliminary Reports are written and completed prior to the end of every laboratory sessions using your EC72 journal.
+\item  Preliminary Reports are checked 30 minutes before the end of every session.
+\item Preliminary Reports are individual.
+\end{enumerate}
+ }
+
+
+\subsection{Final}
+
+\frame{\frametitle{Final Report}
+\begin{enumerate}
+\item Final Reports should be submitted one week after the topic.
+\item Late reports will receive a 10 \% deduction per week.
+\item Final Reports are done by pair.
+\end{enumerate}
+ }
+
+\subsection{Project}
+
+\frame{\frametitle{Project}
+\begin{enumerate}
+\item Students may develop a project proposal or follow the project specifications given by the instructor.
+ \item Projects are done by groups with a maximum of three members.
+\end{enumerate}
+ }
+ 
+
+
+
+\section{Programming Review}
+
+\frame{\frametitle{Programming Review: Hello World!}
+ }
+
+
+ 
+\frame{\frametitle{Programming Review}
+\begin{block}{Problem 1}
+ Given the quadratic equation $ax^2+ bx+c=0$. Write a simple program that implements the following quadratic formula: \\
+\[ x = \dfrac{-b \pm \sqrt{b^2 - 4ac}  }{2a} \]
+\s
+\end{block}
+}
+
+
+\frame{\frametitle{Sample Answer:}
+ \fig{0.56}{quadratic}
+\vfill
+ }
+
+
+\frame{\frametitle{Programming Review}
+\begin{block}{Problem 2}
+Write a program that prints the maximum of four given integers.
+ \fig{0.9}{maxproblem}
+\end{block}
+}
+
+
+\frame{\frametitle{Sample Answer:}
+ \fig{0.8}{maxproblemans}
+\vfill
+ }
+
+
+\frame{\frametitle{Programming Review}
+\begin{block}{Problem 3}
+Write a program that prints a tringle of stars shown in the following figure:
+ \fig{0.9}{triangle}
+\end{block}
+}
+ 
+\frame{\frametitle{Sample Answer:}
+ \fig{0.8}{triangleans}
+\vfill
+ }
+
+
+\frame{\frametitle{Programming Review}
+\begin{block}{Problem 4}
+Write a program that prints a diamond of stars shown in the following figure:
+ \fig{0.9}{diamond}
+\end{block}
+}
+
+
+\frame{\frametitle{Sample Answer:}
+ \fig{0.7}{diamondans}
+\vfill
+ }
+
+\frame{\frametitle{END}
+\begin{center}
+\dquote{Thank you for your attention}
+\fig{0.45}{gundam}
+\end{center} 
+}
+
+\end{LARGE}
+\end{document}  
